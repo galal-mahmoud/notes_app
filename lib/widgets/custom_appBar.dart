@@ -3,21 +3,22 @@ import 'package:notes_app/widgets/search_item.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
-    super.key,
+    super.key, required this.title, required this.icon,
   });
-
+  final String title;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Notes',
-          style: TextStyle(
+          title,
+          style: const TextStyle(
             fontSize: 28.0,
           ),
         ),
-        SearchItem(),
+        SearchItem(icon: icon,),
       ],
     );
   }
