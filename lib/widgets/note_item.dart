@@ -15,7 +15,7 @@ class NoteItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EditView(),
+              builder: (context) => const EditView(),
             ),
           );
         },
@@ -55,7 +55,7 @@ class NoteItem extends StatelessWidget {
                       ),
                     )),
                 trailing: Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 24.0),
+                    padding: const EdgeInsetsDirectional.only(bottom: 24.0),
                     child: IconButton(
                       onPressed: () {},
                       icon: const Icon(

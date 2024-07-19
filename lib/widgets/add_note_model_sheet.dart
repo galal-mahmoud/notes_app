@@ -13,7 +13,9 @@ class AddNoteModelShett extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return BlocProvider(
+      create: (context) => AddNoteCubit(InitialAddNoteState),
+        child: Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {
@@ -25,13 +27,12 @@ class AddNoteModelShett extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return ModalProgressHUD(
-                inAsyncCall: state is LoadingAddNoteState ? true : false,
+              return   AbsorbPointer(
+                absorbing: state is LoadingAddNoteState ? true : false,
                 child: const SingleChildScrollView(
                   child: AddNoteForm(),
-                ),
-              );
+                ),);
             }),
-    );
+    ));
   }
 }
