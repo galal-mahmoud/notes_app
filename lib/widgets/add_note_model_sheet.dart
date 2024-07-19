@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -13,12 +14,11 @@ class AddNoteModelShett extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddNoteCubit, AddNoteStates>(
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
+      child: BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {
               if(state is FailureAddNoteState){
-                print('Failied ${state.errorMessage}');
+                debugPrint('Failied ${state.errorMessage}');
               }
               else if(state is SuccessAddNoteState){
                 Navigator.pop(context);
@@ -27,10 +27,11 @@ class AddNoteModelShett extends StatelessWidget {
             builder: (context, state) {
               return ModalProgressHUD(
                 inAsyncCall: state is LoadingAddNoteState ? true : false,
-                child: const AddNoteForm(),
+                child: const SingleChildScrollView(
+                  child: AddNoteForm(),
+                ),
               );
             }),
-      ),
     );
   }
 }
