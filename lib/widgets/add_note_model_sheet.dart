@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
@@ -15,8 +16,6 @@ class AddNoteModelShett extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNoteCubit(InitialAddNoteState),
-        child: Padding(
-      padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {
               if(state is FailureAddNoteState){
@@ -29,10 +28,16 @@ class AddNoteModelShett extends StatelessWidget {
             builder: (context, state) {
               return   AbsorbPointer(
                 absorbing: state is LoadingAddNoteState ? true : false,
-                child: const SingleChildScrollView(
+                child:  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      start: 16.0,
+                      end: 16.0,
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: const SingleChildScrollView(
                   child: AddNoteForm(),
-                ),);
+                )),);
             }),
-    ));
+    );
   }
 }
