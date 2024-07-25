@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'color_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
-
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -45,9 +46,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
               hint: 'Content',
               maxLines: 5,
             ),
-            const SizedBox(
-              height: 64.0,
-            ),
+            const SizedBox(height: 10,),
+            const ColorListView(),
+            const SizedBox(height: 10,),
             BlocBuilder<AddNoteCubit, AddNoteStates>(
               builder: (context, state) {
                 return CustomButton(
@@ -56,7 +57,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       var currentData = DateTime.now();
-                      var currentDataFormated = DateFormat.yMMMMd('en_US').format(currentData);
+                      var currentDataFormated =
+                          DateFormat.yMMMMd('en_US').format(currentData);
                       var noteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
@@ -79,3 +81,4 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ));
   }
 }
+
