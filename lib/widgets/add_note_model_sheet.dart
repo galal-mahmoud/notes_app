@@ -34,7 +34,9 @@ class AddNoteModelShett extends StatelessWidget {
                       bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
                     child: const SingleChildScrollView(
-                  child: AddNoteForm(),
+                  child: AddNoteForm(
+
+                  ),
                 )),);
             }),
     );
