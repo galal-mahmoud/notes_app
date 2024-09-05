@@ -55,6 +55,8 @@ class NoteItem extends StatelessWidget {
                   ),
                   child: Text(
                     note.subTitle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.black45,
